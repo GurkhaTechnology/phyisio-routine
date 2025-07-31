@@ -1,160 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Physio Routine App</title>
-  <style>
-    /* Global Styles */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: Arial, sans-serif;
-      background: #f7faff;
-      color: #333;
-      padding: 1rem;
-      max-width: 600px;
-      margin: auto;
-    }
-    button { 
-      padding: 0.6rem; 
-      font-size: 1rem;
-      background: #4a90e2;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    button:hover { background: #3a7bc8; }
-    select, input { 
-      padding: 0.5rem; 
-      font-size: 1rem; 
-      margin-bottom: 0.5rem; 
-      width: 100%; 
-      border: 1px solid #ddd;
-      border-radius: 4px;
-    }
-    h1, h2 { margin-bottom: 1rem; color: #2c3e50; }
-    .exercise-item { 
-      padding: 0.8rem; 
-      border-bottom: 1px solid #ddd; 
-      display: flex; 
-      justify-content: space-between;
-      align-items: center;
-      background: white;
-      margin-bottom: 0.5rem;
-      border-radius: 4px;
-    }
-    .controls { 
-      display: flex; 
-      justify-content: center;
-      gap: 0.5rem;
-      margin-top: 1rem;
-    }
-    .controls button { 
-      padding: 0.8rem 1.2rem;
-      font-size: 1.1rem;
-    }
-    .progress { 
-      margin-top: 1rem; 
-      text-align: center; 
-      font-size: 1.2rem;
-      background: white;
-      padding: 1rem;
-      border-radius: 4px;
-    }
-    svg { 
-      width: 150px; 
-      height: 150px; 
-      margin: 1rem auto; 
-      display: block; 
-    }
-    .offline { 
-      color: green; 
-      font-weight: bold;
-      font-size: 0.9rem;
-      margin-left: 1rem;
-    }
-    header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1.5rem;
-    }
-    #toggleView {
-      margin-left: auto;
-      background: #2c3e50;
-    }
-    #exerciseSvg {
-      background: white;
-      padding: 1rem;
-      border-radius: 8px;
-      margin: 1rem 0;
-    }
-    .exercise-info {
-      margin-right: 1rem;
-    }
-
-    /* Corrected View Display Logic */
-    .view { display: none; }
-    .view.active { display: block; }
-
-    @media (max-width: 480px) {
-      body { padding: 0.5rem; }
-      .controls { flex-wrap: wrap; }
-      .controls button { flex: 1 1 30%; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhysioRoutine - Your  Physiotherapy Assistant</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="css/components.css">
+<link rel="manifest" href="/manifest.json">
 </head>
 <body>
-  <header>
-    <h1>Physio Routine</h1>
-    <span id="offlineStatus" class="offline">Online</span>
-    <button id="toggleView">Switch to Player</button>
-  </header>
+    <!-- NAV BAR KO LAGII YETA CHA -->
+    <header class="main-header">
+        <div class="container">
+            <nav class="main-nav">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="GurkhaTechnology Logo" />
+                    GurkhaTechnology
+                </a>
+                <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="exercises.html">Exercise Library</a></li>
+                    <li><a href="routines.html">My Routines</a></li>
+                    <li><a href="progress.html">My Progress</a></li>
+                    <li><a href="login.html">Admin</a></li>
+                    <li>
+                        <select id="language-selector" aria-label="Select Language">
+                            <option value="en">English</option>
+                            <option value="np">Nepali</option>
+                        </select>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+        menuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('open');
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+        });
+    });
+    </script>
+    
 
-  <main>
-    <!-- Routine Builder -->
-    <section id="builderView" class="view active">
-      <h2>Build Your Routine</h2>
-      <select id="exerciseSelect">
-        <option value="">Select an exercise</option>
-      </select>
-      <input type="number" id="reps" placeholder="Repetitions (e.g., 5)" min="1" value="5">
-      <input type="number" id="duration" placeholder="Duration (seconds)" min="1" value="30">
-      <input type="number" id="cycles" placeholder="Cycles (e.g., 2)" min="1" value="2">
-      <button id="addExercise">Add to Routine</button>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Your  Physiotherapy Assistant</h1>
+                    <p>Follow your customized physiotherapy routines anytime, anywhere</p>
+                    <a href="routines.html" class="btn btn-primary">Get Started <span class="icon-arrow-right"></span></a>
+                </div>
+            </div>
+        </section>
 
-      <div id="routineList" style="margin-top: 1.5rem;"></div>
+        <section class="features">
+            <div class="container">
+                <div class="feature-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="icon icon-dumbbell"></span>
+                            <h2>Exercise Library</h2>
+                            <p>Browse through the collection of physiotherapy exercises</p>
+                        </div>
+                        <div class="card-content">
+                            <p>Access a library of exercises with clear visual demonstrations and instructions.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="exercises.html" class="btn btn-outline">View Library</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="icon icon-list-check"></span>
+                            <h2>Custom Routines</h2>
+                            <p>Create personalized exercise routines specific to your needs</p>
+                        </div>
+                        <div class="card-content">
+                            <p>Build your own exercise playlists with custom repetitions and cycles.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="routines.html" class="btn btn-outline">My Routines</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="icon icon-play"></span>
+                            <h2>Exercise Player</h2>
+                            <p>Follow along with visual and audios </p>
+                        </div>
+                        <div class="card-content">
+                            <p>Clear visual demonstrations and audio instructions to ensure correct execution.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="routines.html" class="btn btn-outline">Start Exercising</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-      <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem;">
-        <button id="saveRoutine" style="flex: 1;">Save Routine</button>
-        <button id="startRoutine" style="flex: 1; background: #27ae60;">Start Routine</button>
-      </div>
-    </section>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 PhysioRoutine GurkhaTechnology pvt. ltd. All rights reserved.</p>
+        </div>
+    </footer>
 
-    <!-- Exercise Player -->
-    <section id="playerView" class="view">
-      <h2 id="currentExerciseName">Ready to Start</h2>
-      <div id="exerciseSvg"></div>
-      <div class="progress">
-        <p id="repCounter">Reps: 0</p>
-        <p id="cycleCounter">Cycle: 0/0</p>
-        <p id="timer">00s</p>
-      </div>
-      <div class="controls">
-        <button id="prev">Previous</button>
-        <button id="playPause">Pause</button>
-        <button id="next">Next</button>
-      </div>
-      <button id="backToBuilder" style="width: 100%; margin-top: 1rem; background: #e74c3c;">Back to Builder</button>
-    </section>
-  </main>
+    <script src="js/app.js"></script>
 
 <script>
-  // Paste your original JavaScript here exactly as it was provided.
-  // (Your original JavaScript is correct and can be used unchanged.)
-
-  // Just ensure your DOMContentLoaded event listener remains intact:
-  document.addEventListener('DOMContentLoaded', init);
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('js/service-worker.js')
+      .then(() => console.log('Service Worker registered'));
+  }
 </script>
 
 </body>

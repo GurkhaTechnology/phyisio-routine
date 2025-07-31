@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Progress - PhysioRoutine</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+ <header class="main-header">
+        <div class="container">
+            <nav class="main-nav">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="GurkhaTechnology Logo" />
+                    GurkhaTechnology
+                </a>
+                <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html" >Home</a></li>
+                    <li><a href="exercises.html" >Exercise Library</a></li>
+                    <li><a href="routines.html">My Routines</a></li>
+                    <li><a href="progress.html" class="active">My Progress</a></li>
+                    <li><a href="login.html">Admin</a></li>
+                    <li>
+                        <select id="language-selector" aria-label="Select Language">
+                            <option value="en">English</option>
+                            <option value="np">Nepali</option>
+                        </select>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <main>
+        <div class="container">
+            <div class="page-header">
+                <h1>My Progress</h1>
+                <p>Track your physiotherapy journey and see your improvements over time.</p>
+            </div>
+            
+            <div class="stats-grid" id="stats-grid">
+                <!-- Stats cards will be dynamically inserted here -->
+                <div class="loading-spinner" id="progress-loading">
+                    <div class="spinner"></div>
+                    <p>Loading progress data...</p>
+                </div>
+            </div>
+            
+            <div class="card" id="calendar-card">
+                <div class="card-header">
+                    <h2>Activity Calendar</h2>
+                    <p>Your physiotherapy activity over the last 30 days</p>
+                </div>
+                <div class="card-content">
+                    <div id="activity-calendar">
+                        <!-- Calendar will be dynamically inserted here -->
+                    </div>
+                    <div class="calendar-legend">
+                        <span>Less</span>
+                        <span class="legend-box level-0"></span>
+                        <span class="legend-box level-1"></span>
+                        <span class="legend-box level-2"></span>
+                        <span class="legend-box level-3"></span>
+                        <span>More</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card" id="recent-activity-card">
+                <div class="card-header">
+                    <h2>Recent Activity</h2>
+                    <p>Your recently completed routines</p>
+                </div>
+                <div class="card-content">
+                    <div id="recent-activity">
+                        <!-- Recent activity will be dynamically inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 PhysioRoutine. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/db.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/progress.js"></script>
+</main>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener('click', function () {
+        navLinks.classList.toggle('open');
+      });
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('open');
+        });
+      });
+    }
+  });
+</script>
+</body>
+</html>

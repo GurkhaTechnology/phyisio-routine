@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise Library - PhysioRoutine</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+ <header class="main-header">
+        <div class="container">
+            <nav class="main-nav">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="GurkhaTechnology Logo" />
+                    GurkhaTechnology
+                </a>
+                <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html" >Home</a></li>
+                    <li><a href="exercises.html" class="active">Exercise Library</a></li>
+                    <li><a href="routines.html">My Routines</a></li>
+                    <li><a href="progress.html">My Progress</a></li>
+                    <li><a href="login.html">Admin</a></li>
+                    <li>
+                        <select id="language-selector" aria-label="Select Language">
+                            <option value="en">English</option>
+                            <option value="np">Nepali</option>
+                        </select>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="page-header">
+                <h1>Exercise Library</h1>
+                <p>Browse through our collection of physiotherapy exercises and add them to your routines.
+                    <br>
+                    credit : all the images were taken from spotebi.com </p>
+            </div>
+            
+            <div class="tabs">
+                <div class="tabs-list" id="category-tabs">
+                    <button class="tab-trigger active" data-category="all">All Exercises</button>
+                    <button class="tab-trigger" data-category="neck">Neck</button>
+                    <button class="tab-trigger" data-category="shoulder">Shoulder</button>
+                    <button class="tab-trigger" data-category="back">Back</button>
+                    <button class="tab-trigger" data-category="knee">Knee</button>
+                    <button class="tab-trigger" data-category="ankle">Ankle</button>
+                </div>
+                
+                <div class="tab-content active" id="exercise-grid">
+                    <!-- Exercise cards will be dynamically inserted here later  -->
+                    <div class="loading-spinner" id="loading-spinner">
+                        <div class="spinner"></div>
+                        <p>Loading exercises...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 PhysioRoutine. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Toast notification -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <p class="toast-title" id="toast-title"></p>
+            <p class="toast-message" id="toast-message"></p>
+        </div>
+        <button class="toast-close" id="toast-close">&times;</button>
+    </div>
+
+    <script src="js/db.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/exercises.js"></script>
+</main>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener('click', function () {
+        navLinks.classList.toggle('open');
+      });
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('open');
+        });
+      });
+    }
+  });
+</script>
+</body>
+</html>

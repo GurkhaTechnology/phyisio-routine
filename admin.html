@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - PhysioRoutine</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <nav class="main-nav">
+                <a href="index.html" class="logo">PhysioRoutine</a>
+                <button id="logout-btn" class="btn btn-outline">Logout</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="page-header">
+            <h1>Admin Panel</h1>
+            <p>Add new exercises to the library</p>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2>Add New Exercise</h2>
+            </div>
+            <div class="card-content">
+                <form id="exercise-form">
+                    <div class="form-group">
+                        <label for="exercise-name">Exercise Name</label>
+                        <input type="text" id="exercise-name" required class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exercise-category">Category</label>
+                        <select id="exercise-category" required class="form-input">
+                            <option value="">Select a category</option>
+                            <option value="neck">Neck</option>
+                            <option value="shoulder">Shoulder</option>
+                            <option value="back">Back</option>
+                            <option value="knee">Knee</option>
+                            <option value="ankle">Ankle</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exercise-description">Description</label>
+                        <textarea id="exercise-description" required class="form-input" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exercise-instructions">Instructions (one per line)</label>
+                        <textarea id="exercise-instructions" required class="form-input" rows="5"></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="exercise-sets">Sets</label>
+                            <input type="number" id="exercise-sets" min="1" required class="form-input">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exercise-reps">Reps (leave blank if using duration)</label>
+                            <input type="number" id="exercise-reps" min="1" class="form-input">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exercise-duration">Duration (seconds, if no reps)</label>
+                            <input type="number" id="exercise-duration" min="1" class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exercise-image">Image URL</label>
+                        <input type="url" id="exercise-image" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exercise-gif">GIF URL</label>
+                        <input type="url" id="exercise-gif" class="form-input">
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="reset" class="btn btn-outline">Reset</button>
+                        <button type="submit" class="btn btn-primary">Add Exercise</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/auth.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
